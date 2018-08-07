@@ -6,8 +6,8 @@
 }
 
 <style>
-    .tag{
-        background-color:beige;
+    .tag {
+        background-color: beige;
     }
 </style>
 
@@ -25,9 +25,9 @@
 
     <!-- Date/Time -->
     <p>
-        <span class="glyphicon glyphicon-time"></span>@String.Format("{0: MMMM yyyy}", Model.Tarih) 
-        <span class="glyphicon glyphicon-edit"></span>@Model.Kategori.KategoriAdi (@Model.Kategori.Makales.Count) 
-        <span class="glyphicon glyphicon-comment"></span> @Model.Yorums.Count 
+        <span class="glyphicon glyphicon-time"></span>@String.Format("{0: MMMM yyyy}", Model.Tarih)
+        <span class="glyphicon glyphicon-edit"></span>@Model.Kategori.KategoriAdi (@Model.Kategori.Makales.Count)
+        <span class="glyphicon glyphicon-comment"></span> @Model.Yorums.Count
 
     </p>
 
@@ -49,7 +49,68 @@
             </span>
         }
     </div>
-
-
     <hr>
+
+    @if (Session["uyeid"] != null)
+    {
+        <div class="well">
+            <h4>Yorum Yaz</h4>
+            <form role="form">
+                <div class="form-group">
+                    <textarea id="yorum" typeof="text" class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" id="gonder" class="btn btn-primary">Gönder</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <h6>Makaleye yorum yapmak için kullanıcı girişi yapmalısınız.</h6>
+        <p><a href="/Uye/Login/">Giriş Yap</a></p>
+
+    }
+
+
+    <hr />
+
+    @foreach (var item in Model.Yorums.ToList())
+    {
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="img-circle" width="25" src="@item.Uye.Foto" alt="@item.Uye.AdSoyad" />
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">
+                    @item.Uye.KullaniciAdi
+                    <small>@item.Tarih</small>
+                </h4>
+                @item.Icerik - @if (Convert.ToInt32(Session["uyeid"]) == item.UyeId)
+                {
+                    <a class="btn btn-danger" href="/Home/YorumSil">Sil</a>
+                }
+            </div>
+        </div>
+        <hr />
+    }
+
 </div>
+
+<script src="~/Content/startbootstrap-blog-post-gh-pages/vendor/jquery/jquery.js"></script>
+<script src="~/Content/startbootstrap-blog-post-gh-pages/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#gonder").click(function(){
+            var yorumunuz=$("#yorum").val();
+            $.ajax({
+                url:'/Home/YorumYap',
+                data:{yorum:yorumunuz,Makaleid:@Model.MakaleId},
+                type:'POST',
+                dataType: 'json',
+                success:function(data){
+                    alert("Yorumunuz Gönderildi");
+                }
+            });
+        });
+    })
+</script>

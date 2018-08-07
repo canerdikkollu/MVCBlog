@@ -29,6 +29,20 @@ namespace MvcBlog.Controllers
             return View(makale);
         }
 
+        public ActionResult YorumYap(string yorum,int MakaleId)
+        {
+            var uyeid = Session["uyeid"];
+            if (yorum ==null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+
+            db.Yorums.Add(new Yorum { UyeId = Convert.ToInt32(uyeid), MakaleId = MakaleId, Icerik = yorum, Tarih = DateTime.Now });
+            db.SaveChanges();
+           
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Hakkimizda()
         {
             return View();
