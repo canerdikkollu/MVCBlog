@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MvcBlog.Models.Makale>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    @foreach (var item in Model)
+    {
+        <article class="col-sm-12">
+            <br />
+            <h2>
+                <a href="/Home/MakaleDetay/@item.MakaleId">@item.Baslik</a>
+            </h2>
+
+            <p class="">
+                <span class="glyphicon glyphicon-time"></span>
+                @String.Format("{0: MMMM yyyy}", item.Tarih)
+                <span class="glyphicon glyphicon-tags"></span>
+                @item.Etikets.Count
+            </p>
+
+            <img class="img-responsive" src="@item.Foto" width="700" height="300" alt="@item.Baslik" />
+
+            @if (item.Icerik.Length > 150)
+            {
+                <p>
+                    @Html.Raw(item.Icerik.Substring(0, 150))
+                </p>
+            }
+            else
+            {
+                <p>
+                    @Html.Raw(item.Icerik) ...
+                </p>
+            }
+            <p class="lead">
+                <img class="img-circle img-responsive" width="25" src="@item.Uye.Foto" alt="@item.Uye.AdSoyad" />
+                <a href="/Uye/Index/@item.Uye.UyeId">@item.Uye.KullaniciAdi</a>
+            </p>
+
+            <a class="btn btn-primary" href="/Home/MakaleDetay/@item.MakaleId">
+                Devamını Oku
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+            <hr />
+        </article>
+    }
+</div>
