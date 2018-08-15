@@ -1,4 +1,7 @@
-﻿@model IEnumerable<MvcBlog.Models.Makale>
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<MvcBlog.Models.Makale>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -46,4 +49,14 @@
             <hr />
         </article>
     }
+
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <div class="pagedList pagination">
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),new PagedListRenderOptions{ LinkToFirstPageFormat = "<< İlk", LinkToPreviousPageFormat = "< Geri", LinkToNextPageFormat = "İleri >", LinkToLastPageFormat = "Son >>" })
+            </div>
+        </div>
+
+    </div>
 </div>

@@ -71,4 +71,10 @@ C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\bin\System.Web.Helpers.x
 C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\bin\System.Web.Mvc.xml
 C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\obj\Debug\MvcBlog.dll
 C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\obj\Debug\MvcBlog.pdb
+C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\bin\PagedList.dll
+C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\bin\PagedList.Mvc.dll
+C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\bin\PagedList.xml
+C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\bin\PagedList.Mvc.xml
 C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\obj\Debug\MvcBlog.csprojResolveAssemblyReference.cache
+C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\bin\AspNet.Mvc.Grid.dll
+C:\Users\caner\OneDrive\Belgeler\GitHub\MVCBlog\MvcBlog\bin\GridMvc.dll

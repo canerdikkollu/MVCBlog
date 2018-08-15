@@ -25,10 +25,9 @@
 
     <!-- Date/Time -->
     <p>
-        <span class="glyphicon glyphicon-time"></span>@String.Format("{0: MMMM yyyy}", Model.Tarih)
-        <span class="glyphicon glyphicon-edit"></span>@Model.Kategori.KategoriAdi (@Model.Kategori.Makales.Count)
-        <span class="glyphicon glyphicon-comment"></span> @Model.Yorums.Count
-
+        <span class="glyphicon glyphicon-time"></span>@String.Format("{0: MMMM yyyy}", Model.Tarih)  <br />   
+        <span class="glyphicon glyphicon-edit"></span>@Model.Kategori.KategoriAdi (@Model.Kategori.Makales.Count)    
+        <span class="glyphicon glyphicon-comment"></span>   @Model.Yorums.Count
     </p>
 
     <hr>
@@ -39,7 +38,6 @@
     <p class="lead">
         @Html.Raw(Model.Icerik)
     </p>
-
 
     <div class="well">
         @foreach (var item in Model.Etikets)
@@ -69,8 +67,6 @@
         <p><a href="/Uye/Login/">Giriş Yap</a></p>
 
     }
-
-
     <hr />
 
     @foreach (var item in Model.Yorums.ToList())
@@ -86,7 +82,7 @@
                 </h4>
                 @item.Icerik - @if (Convert.ToInt32(Session["uyeid"]) == item.UyeId)
                 {
-                    <a class="btn btn-danger" href="/Home/YorumSil">Sil</a>
+                    <a class="btn btn-danger" href="/Home/YorumSil/@item.YorumId">Sil</a>
                 }
             </div>
         </div>
@@ -114,3 +110,14 @@
         });
     })
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            url: '/Home/OkunmaArttir',
+            data:{Makaleid:@Model.MakaleId},
+            type: 'POST', 
+        });
+    
+    
+    })</script>
